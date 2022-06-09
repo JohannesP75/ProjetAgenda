@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Accueil LMBO";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenue dans notre office de courtage !</h1>
+    <p>Navivuez sur notre site pour en savoir plus sur nos activités.</p>
+
+    <h1 class="display-4">Plan du site :</h1>
+    <div class="row">
+        <div class="col-md-4">Courtiers</div>
+        <div class="col-md-4">Clients</div>
+        <div class="col-md-4">Rendez-vous</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="list-group">
+                <a class="list-group-item list-group-item-action" asp-controller="Broker" asp-action="ListBrokers">Liste des courtiers</a>
+                <a class="list-group-item list-group-item-action" asp-controller="Broker" asp-action="AddBroker">Ajouter un courtier</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="list-group">
+                <a class="list-group-item list-group-item-action" asp-controller="Customer" asp-action="ListCustomers">Liste des clients</a>
+                <a class="list-group-item list-group-item-action" asp-controller="Customer" asp-action="AddCustomer">Ajouter un client</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="list-group">
+                <a class="list-group-item list-group-item-action" asp-controller="Appointment" asp-action="ListAppointments">Liste des RDV</a>
+                <a class="list-group-item list-group-item-action" asp-controller="Appointment" asp-action="AddAppointment">Ajouter un RDV</a>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="display-4">Liste des rendez-vous :</h1>
+    <!--<partial href="~/Appointment/ListAppointments.cshtml"></partial>-->
+</div>

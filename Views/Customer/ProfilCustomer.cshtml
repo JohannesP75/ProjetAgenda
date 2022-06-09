@@ -1,0 +1,99 @@
+﻿@model ProjetAgenda.Models.Customer
+@{
+    ViewData["Title"] = "Profil client " + Model.Firstname + " " + Model.Lastname.ToUpper()+" ("+Model.IdCustomer+")";
+}
+
+<h1>Informations personnelles :</h1>
+
+<div class="row">
+    <!--<dl class="row">
+        <dt class = "col-sm-2">Nom de famille :</dt>
+        <dd class = "col-sm-10">@Model.Lastname</dd>
+        <dt class = "col-sm-2">Prénom :</dt>
+        <dd class = "col-sm-10">@Model.Firstname</dd>
+        <dt class = "col-sm-2">Adresse email :</dt>
+        <dd class = "col-sm-10">@Model.Mail</dd>
+        <dt class = "col-sm-2">Numéro de téléphone :</dt>
+        <dd class = "col-sm-10">@Model.PhoneNumber</dd>
+        <dt class = "col-sm-2">Budget :</dt>
+        <dd class = "col-sm-10">@Model.Budget</dd>
+    </dl>-->
+
+            <div class="col-md-4">
+            <form asp-action="EditCustomer">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="IdCustomer" />
+                <span>Informations personnelles :</span>
+                <!-- Nom de famille -->
+                <div class="form-group">
+                    <label asp-for="Lastname" class="control-label"></label>
+                    <input asp-for="Lastname" class="form-control" disabled="true" id="input_lastname" />
+                    <span asp-validation-for="Lastname" class="text-danger"></span>
+                    <span class="original_value" hidden>@Model.Lastname</span>
+                </div>
+
+                <!-- Prénom -->
+                <div class="form-group">
+                    <label asp-for="Firstname" class="control-label"></label>
+                    <input asp-for="Firstname" class="form-control" disabled="true" id="input_firstname" />
+                    <span asp-validation-for="Firstname" class="text-danger"></span>
+                    <span class="original_value" hidden>@Model.Firstname</span>
+                </div>
+
+                <span>Communication :</span>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label asp-for="Mail" class="control-label"></label>
+                    <input asp-for="Mail" class="form-control" type="email" disabled="true" id="input_email" />
+                    <span asp-validation-for="Mail" class="text-danger"></span>
+                    <span class="original_value" hidden>@Model.Mail</span>
+                </div>
+
+                <!-- Téléphone -->
+                <div class="form-group">
+                    <label asp-for="PhoneNumber" class="control-label"></label>
+                    <input asp-for="PhoneNumber" class="form-control" type="tel" disabled="true" id="input_phone" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    <span class="original_value" hidden>@Model.PhoneNumber</span>
+                </div>
+
+                <span>Porte-feuille :</span>
+                <!-- Budget -->
+                <div class="form-group">
+                    <label asp-for="Budget" class="control-label"></label>
+                    <input asp-for="Budget" class="form-control" type="number" disabled="true" id="input_budget"/>
+                    <span asp-validation-for="Budget" class="text-danger"></span>
+                    <span class="original_value" hidden>@Model.Budget</span>
+                </div>
+
+                <!-- Décision -->
+                <div class="form-group">
+                    <input type="button" value="Modifier" class="btn btn-primary" id="input_modif" onclick="activerModifications()" />
+                    <input type="submit" value="Confirmer modifications" class="btn btn-primary" disabled="true" id="input_creer" />
+                    <input type="reset" value="Vider les champs" class="btn btn-danger" disabled="true" id="input_reset" />
+                </div>
+            </form>
+        </div>
+
+        <a asp-action="ListCustomers">Retour</a>
+</div>
+
+<h1>Liste des RDV :</h1>
+<table class="table table-striped table-hover table-info">
+    <thead>
+        <th>Date et heure</th>
+        <th>Sujet</th>
+        <th>Courtier</th>
+    </thead>
+    <tbody>
+        @foreach(Appointment rdv in Model.Appointments)
+        {
+            <tr>
+                <td>@rdv.DateHour</td>
+                <td>@rdv.Subject</td>
+                <td>@rdv.IdBrokerNavigation.Firstname @rdv.IdBrokerNavigation.Lastname</td>
+            </tr>
+        }
+    </tbody>
+</table>

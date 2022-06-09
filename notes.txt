@@ -1,0 +1,15 @@
+[11:28 27/05/2022]
+
+Après plusieurs tentatives, la commande pour générer les classes dans ASP.NET dans une approche "database-first" est:
+	Scaffold-DbContext "Server=DESKTOP-OT5M76N\SQLEXPRESS;Database=agenda;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer  -ContextDir Data -OutputDir Models
+	
+[11:28 30/05/2022]
+Voici ma fonction pour vérifier la validité de la forme d'une addrsse mail:
+
+-- Vérifie si la valeur entrée à bien la forme d'une adresse email
+CREATE FUNCTION dbo.checkMailForm(@mail VARCHAR)
+RETURN BOOLEAN
+AS
+BEGIN
+	RETURN @mail LIKE '%@%.%';
+END;

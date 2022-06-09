@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ProjetAgenda.Models.Appointment>
+
+<table class="table table-striped table-hover table-info">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateHour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                Courtier
+            </th>
+            <th>
+                Client
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateHour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @item.IdBrokerNavigation.Firstname @item.IdBrokerNavigation.Lastname
+            </td>
+            <td>
+                @item.IdCustomerNavigation.Firstname @item.IdCustomerNavigation.Lastname
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.IdAppointment">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

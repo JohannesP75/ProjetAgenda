@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<ProjetAgenda.Models.Broker>
+@{
+    ViewData["Title"] = "Collaborateurs de notre firme";
+}
+
+<h1 class=".translate-middle">Collaborateurs</h1>
+<table class="table table-striped table-hover table-info">
+    <thead>
+        <th>Nom de famille</th>
+        <th>Prénom</th>
+        <th>Adresse email</th>
+        <th>Numéro de téléphone</th>
+        <th></th>
+    </thead>
+    <tbody>
+        @foreach(Broker broker in Model)
+        {
+            <tr>
+                <td>@broker.Lastname</td>
+                <td>@broker.Firstname</td>
+                <td>@broker.Mail</td>
+                <td>@broker.PhoneNumber</td>
+                <td><a asp-action="ProfilBroker" asp-route-id="@broker.IdBroker">Détails</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

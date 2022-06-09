@@ -1,0 +1,68 @@
+﻿@model ProjetAgenda.Models.Appointment
+@{
+    ViewData["Title"] = "Ajout d'un nouveau rendez-vous";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+<h4>Le nouveau rendez-vous :</h4>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="AddAppointment" method="POST">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+                <span>Partenaires :</span>
+                <!-- Courtier -->
+                <div class="form-group">
+                    <label asp-for="IdBroker" class="control-label">Courtier</label>
+                    <select name="courtiers">
+                        <option value="">--Choississez un courtier--</option>
+                    @foreach(Broker b in ViewBag.listBrokers)
+                    {
+                        <option value={@b.IdBroker}>@b.Firstname @b.Lastname</option>
+                    }
+                </select>
+                    <span asp-validation-for="IdBroker" class="text-danger"></span>
+                </div>
+
+                <!-- Client -->
+                <div class="form-group">
+                    <label asp-for="IdCustomer" class="control-label">Client</label>
+                    <select name="clients">
+                        <option value="">--Choississez un client--</option>
+                        @foreach(Customer c in ViewBag.listCustomers)
+                    {
+                        <option value={@c.IdCustomer}>@c.Firstname @c.Lastname</option>
+                    }
+                    </select>
+                    <span asp-validation-for="IdCustomer" class="text-danger"></span>
+                </div>
+
+                <span>Informations :</span>
+
+                <!-- Sujet -->
+                <div class="form-group">
+                    <label asp-for="Subject" class="control-label">Sujet</label>
+                    <input asp-for="Subject" class="form-control" />
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
+
+                <!-- Temps -->
+                <div class="form-group">
+                    <label asp-for="DateHour" class="control-label">Date et heure</label>
+                    <input asp-for="DateHour" class="form-control" type="datetime-local" />
+                    <span asp-validation-for="DateHour" class="text-danger"></span>
+                </div>
+
+                <!-- Décision -->
+                <span>Décision :</span>
+
+                <div class="form-group">
+                    <input type="submit" value="Créer" class="btn btn-primary" id="input_creer" />
+                    <input type="reset" value="Vider les champs" class="btn btn-danger" id="input_reset" />
+                </div>
+            </form>
+        </div>
+
+        <a asp-action="Index" asp-controller="Home">Retour</a>
+    </div>
